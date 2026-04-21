@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BurgerX </title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- TOAST -->
+<div class="toast" id="toast">🛒 Added to cart!</div>
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <img src="logo-removebg-preview.png" alt="BurgerX"/>
+    <span>BurgerX</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="nav-btn" onclick="toggleDark()" title="Toggle theme">🌙</button>
+    <button class="nav-btn cart-btn" onclick="openCart()" title="Cart">
+      🛒 <span class="cart-badge" id="cart-count">0</span>
+    </button>
+    <a href="#menu" class="order-btn">Order Now 🍔</a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-close" id="mobileClose">✕</button>
+  <a href="#hero"    onclick="closeMobileNav()">Home</a>
+  <a href="#menu"   onclick="closeMobileNav()">Menu</a>
+  <a href="#about"  onclick="closeMobileNav()">About</a>
+  <a href="#reviews" onclick="closeMobileNav()">Reviews</a>
+  <a href="#contact" onclick="closeMobileNav()">Contact</a>
+</div>
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="slider-track" id="sliderTrack">
+    <!-- Slide 1: Classical -->
+    <div class="slide slide-1">
+      <div class="slide-bg-text">CLASSICAL</div>
+      <div class="slide-content">
+        <span class="slide-tag">🔥 Fan Favourite</span>
+        <h1 class="slide-title">The <span>Classic</span><br>Burger</h1>
+        <p class="slide-desc">Hand-formed beef patty, crisp lettuce, ripe tomato, pickles & our signature sauce on a toasted sesame bun.</p>
+        <p class="slide-price"><sub>PKR </sub>890</p>
+        <div class="slide-actions">
+          <button class="btn-primary" onclick="addToCartById(0)">Add to Cart</button>
+          <a href="#menu" class="btn-ghost">See Menu</a>
+        </div>
+      </div>
+      <div class="slide-img-wrap">
+        <img src="classical-removebg-preview.png" alt="Classic Burger"/>
+        <div class="glow-ring"></div>
+      </div>
+    </div>
+    <!-- Slide 2: Cheese -->
+    <div class="slide slide-2">
+      <div class="slide-bg-text">CHEESE</div>
+      <div class="slide-content">
+        <span class="slide-tag">🧀 Best Seller</span>
+        <h1 class="slide-title">The <span>Cheese</span><br>Burger</h1>
+        <p class="slide-desc">Double smash patty, aged cheddar pull, crispy bacon, caramelised onions — an absolute masterpiece.</p>
+        <p class="slide-price"><sub>PKR </sub>1,090</p>
+        <div class="slide-actions">
+          <button class="btn-primary" onclick="addToCartById(1)">Add to Cart</button>
+          <a href="#menu" class="btn-ghost">See Menu</a>
+        </div>
+      </div>
+      <div class="slide-img-wrap">
+        <img src="cheese_burger-removebg-preview.png" alt="Cheese Burger"/>
+        <div class="glow-ring"></div>
+      </div>
+    </div>
+    <!-- Slide 3: Special -->
+    <div class="slide slide-3">
+      <div class="slide-bg-text">SPECIAL</div>
+      <div class="slide-content">
+        <span class="slide-tag">⭐ Chef's Special</span>
+        <h1 class="slide-title">The <span>Special</span><br>Burger</h1>
+        <p class="slide-desc">Triple patty stack, ghost pepper mayo, truffle aioli, crispy onion rings. For the truly adventurous.</p>
+        <p class="slide-price"><sub>PKR </sub>1,390</p>
+        <div class="slide-actions">
+          <button class="btn-primary" onclick="addToCartById(2)">Add to Cart</button>
+          <a href="#menu" class="btn-ghost">See Menu</a>
+        </div>
+      </div>
+      <div class="slide-img-wrap">
+        <img src="12-removebg-preview.png" alt="Special Burger"/>
+        <div class="glow-ring"></div>
+      </div>
+    </div>
+  </div>
+  <!-- Arrows -->
+  <button class="slider-arrow prev" onclick="changeSlide(-1)">&#8592;</button>
+  <button class="slider-arrow next" onclick="changeSlide(1)">&#8594;</button>
+  <!-- Dots -->
+  <div class="slider-dots" id="sliderDots">
+    <div class="dot active" onclick="goToSlide(0)"></div>
+    <div class="dot" onclick="goToSlide(1)"></div>
+    <div class="dot" onclick="goToSlide(2)"></div>
+  </div>
+</section>
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">SMASH BURGERS</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">FRESH BEEF DAILY</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">SECRET SAUCE</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">LOADED FRIES</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">CRISPY CHICKEN</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">OPEN TILL MIDNIGHT</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">SMASH BURGERS</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">FRESH BEEF DAILY</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">SECRET SAUCE</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">LOADED FRIES</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">CRISPY CHICKEN</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">OPEN TILL MIDNIGHT</span><span class="ticker-item ticker-sep">✦</span>
+  </div>
+</div>
+<!-- MENU -->
+<section class="s menu-section" id="menu">
+  <p class="s-label reveal">What We Serve</p>
+  <h2 class="s-title reveal">OUR <span>MENU</span></h2>
+  <div class="menu-grid">
+    <!-- Card 1 -->
+    <article class="menu-card reveal" onclick="addToCartById(0)">
+      <span class="card-badge gold">Fan Fave</span>
+      <div class="card-img-wrap">
+        <img src="classical-removebg-preview.png" alt="Classic Burger"/>
+        <div class="card-glow"></div>
+      </div>
+      <div class="card-tag-row">
+        <span class="tag">Beef</span>
+        <span class="tag">Classic</span>
+      </div>
+      <h3 class="card-name">Classic Burger</h3>
+      <p class="card-desc">Juicy single patty, lettuce, tomato, pickles, onions & our house sauce on a fresh toasted bun.</p>
+      <div class="card-footer">
+        <span class="card-price">PKR 890</span>
+        <button class="add-btn" id="add-btn-0" onclick="addToCartById(0,event)">+ Add</button>
+      </div>
+    </article>
+    <!-- Card 2 -->
+    <article class="menu-card reveal" onclick="addToCartById(1)">
+      <span class="card-badge">Best Seller</span>
+      <div class="card-img-wrap">
+        <img src="cheese_burger-removebg-preview.png" alt="Cheese Burger"/>
+        <div class="card-glow"></div>
+      </div>
+      <div class="card-tag-row">
+        <span class="tag">Double</span>
+        <span class="tag">Cheesy</span>
+      </div>
+      <h3 class="card-name">Cheese Burger</h3>
+      <p class="card-desc">Double smash with melted cheddar waterfall, crispy bacon, caramelised onions & smoke mayo.</p>
+      <div class="card-footer">
+        <span class="card-price">PKR 1,090</span>
+        <button class="add-btn" id="add-btn-1" onclick="addToCartById(1,event)">+ Add</button>
+      </div>
+    </article>
+    <!-- Card 3 -->
+    <article class="menu-card reveal" onclick="addToCartById(2)">
+      <span class="card-badge gold">Chef's Special</span>
+      <div class="card-img-wrap">
+        <img src="12-removebg-preview.png" alt="Special Burger"/>
+        <div class="card-glow"></div>
+      </div>
+      <div class="card-tag-row">
+        <span class="tag">Triple</span>
+        <span class="tag">Premium</span>
+      </div>
+      <h3 class="card-name">Special Burger</h3>
+      <p class="card-desc">Three flame-grilled patties, ghost pepper mayo, truffle aioli, onion rings. Pure madness.</p>
+      <div class="card-footer">
+        <span class="card-price">PKR 1,390</span>
+        <button class="add-btn" id="add-btn-2" onclick="addToCartById(2,event)">+ Add</button>
+      </div>
+    </article>
+  </div>
+</section>
+<!-- ABOUT / STATS -->
+<section class="s about-section" id="about">
+  <p class="s-label reveal">The Story</p>
+  <h2 class="s-title reveal">NO <span>SHORTCUTS.</span></h2>
+  <div class="about-inner">
+    <div class="stat-grid reveal">
+      <div class="stat-box">
+        <p class="stat-num">2M+</p>
+        <p class="stat-lbl">Burgers Served</p>
+      </div>
+      <div class="stat-box">
+        <p class="stat-num">4.9★</p>
+        <p class="stat-lbl">Avg. Rating</p>
+      </div>
+      <div class="stat-box">
+        <p class="stat-num">6</p>
+        <p class="stat-lbl">Locations</p>
+      </div>
+      <div class="stat-box">
+        <p class="stat-num">100%</p>
+        <p class="stat-lbl">Fresh Beef Daily</p>
+      </div>
+    </div>
+    <div class="about-copy reveal">
+      <p>BurgerX was born out of a single obsession: <strong>make the perfect burger.</strong> Every patty is hand-pressed to order. Every sauce is made in-house. Every bun is baked fresh that morning.</p>
+      <p>We don't believe in shortcuts, frozen meat, or mediocrity. When you bite into a BurgerX burger, you taste the difference — because <strong>we care about every single layer.</strong></p>
+      <a href="#menu" class="btn-primary" style="display:inline-block;margin-top:1rem;padding:0.9rem 2rem;text-decoration:none;">Explore Menu</a>
+    </div>
+  </div>
+</section>
+<!-- REVIEWS -->
+<section class="s testi-section" id="reviews">
+  <p class="s-label reveal">Happy Customers</p>
+  <h2 class="s-title reveal">THE <span>VERDICT</span></h2>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"The Cheese Burger is the most dangerous thing I've ever eaten. I say dangerous because I literally cannot stop ordering it. My wallet hates BurgerX. My tastebuds worship it."</p>
+      <p class="testi-author">— Ahmed K., Islamabad</p>
+    </div>
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"That cheese pull should be illegal. Got it on my shirt, on my phone, maybe on the ceiling. Zero regrets. This is genuinely the best fast food in Pakistan."</p>
+      <p class="testi-author">— Sana M., Rawalpindi</p>
+    </div>
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Drove 40 minutes from Lahore just for the Special. Worth every km. The ghost pepper mayo is terrifying and perfect. Already planning my next visit."</p>
+      <p class="testi-author">— Hamza R., Lahore</p>
+    </div>
+  </div>
+</section>
+<!-- CTA -->
+<section class="cta-section">
+  <h2 class="cta-title">HUNGRY?<br>LET'S FIX THAT.</h2>
+  <p class="cta-sub">Order online, pick up hot, destroy immediately.</p>
+  <a href="#menu" class="btn-white">Order Now 🍔</a>
+</section>
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-brand">
+    <span class="logo-txt">BURGER<span>X</span></span>
+    <p>Delicious hand-smashed burgers made with fresh ingredients and pure obsession. No shortcuts, ever.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Menu</h4>
+    <ul>
+      <li><a href="#">Classic Burger</a></li>
+      <li><a href="#">Cheese Burger</a></li>
+      <li><a href="#">Special Burger</a></li>
+      <li><a href="#">Loaded Fries</a></li>
+      <li><a href="#">Drinks</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Company</h4>
+    <ul>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Locations</a></li>
+      <li><a href="#">Careers</a></li>
+      <li><a href="#">Franchise</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Contact</h4>
+    <ul>
+      <li><a href="#">📍 Rawalpindi, Pakistan</a></li>
+      <li><a href="#">📞 +92 300 0000000</a></li>
+      <li><a href="#">✉️ hello@burgerx.pk</a></li>
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">TikTok</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2026 BurgerX. All rights reserved.</span>
+  <span>Made with 🔥 in Pakistan</span>
+</div>
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button class="cart-close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-body" id="cartBody">
+    <div class="cart-empty">
+      <span class="empty-icon">🛒</span>
+      Your cart is empty.<br/>Add some burgers!
+    </div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total-row">
+      <span class="cart-total-label">Total</span>
+      <span class="cart-total-val" id="cartTotal">PKR 0</span>
+    </div>
+    <button class="checkout-btn">Checkout →</button>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
